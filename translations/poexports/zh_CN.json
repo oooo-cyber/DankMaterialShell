@@ -303,7 +303,7 @@
     "Command or script to run instead of the standard hibernate procedure": "用于替代标准休眠流程的命令或脚本"
   },
   "Command or script to run instead of the standard lock procedure": {
-    "Command or script to run instead of the standard lock procedure": ""
+    "Command or script to run instead of the standard lock procedure": "使用命令或脚本，而不是标准锁定过程来运行"
   },
   "Command or script to run instead of the standard logout procedure": {
     "Command or script to run instead of the standard logout procedure": "用于替代标准注销流程的命令或脚本"
@@ -492,7 +492,7 @@
     "Dock Transparency": "程序坞透明度"
   },
   "Domain (optional)": {
-    "Domain (optional)": ""
+    "Domain (optional)": "域（可选）"
   },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "拖动组件以在各区块内重新排序。点击眼睛图标可隐藏/显示组件（保留间距），点击 X 可彻底移除。"
@@ -1503,7 +1503,7 @@
     "Wind": "风速"
   },
   "Window Scrolling": {
-    "Window Scrolling": ""
+    "Window Scrolling": "窗口滚动"
   },
   "Workspace": {
     "Workspace": "工作区"

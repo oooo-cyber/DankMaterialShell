@@ -285,7 +285,7 @@
     "Clock": "時計"
   },
   "Clock show seconds": {
-    "Clock show seconds": ""
+    "Clock show seconds": "時計に秒数を表示"
   },
   "Close": {
     "Close": "閉じる"
@@ -300,22 +300,22 @@
     "Color temperature for night mode": "ナイトモードの色温度"
   },
   "Command or script to run instead of the standard hibernate procedure": {
-    "Command or script to run instead of the standard hibernate procedure": ""
+    "Command or script to run instead of the standard hibernate procedure": "標準の休止状態手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Command or script to run instead of the standard lock procedure": {
-    "Command or script to run instead of the standard lock procedure": ""
+    "Command or script to run instead of the standard lock procedure": "標準のロック手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Command or script to run instead of the standard logout procedure": {
-    "Command or script to run instead of the standard logout procedure": ""
+    "Command or script to run instead of the standard logout procedure": "標準のログアウト手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Command or script to run instead of the standard power off procedure": {
-    "Command or script to run instead of the standard power off procedure": ""
+    "Command or script to run instead of the standard power off procedure": "標準の電源オフ手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Command or script to run instead of the standard reboot procedure": {
-    "Command or script to run instead of the standard reboot procedure": ""
+    "Command or script to run instead of the standard reboot procedure": "標準の再起動手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Command or script to run instead of the standard suspend procedure": {
-    "Command or script to run instead of the standard suspend procedure": ""
+    "Command or script to run instead of the standard suspend procedure": "標準の一時停止手順の代わりにコマンドまたはスクリプトで実行"
   },
   "Communication": {
     "Communication": "コミュニケーション"
@@ -393,7 +393,7 @@
     "Custom Location": "カスタムロケーション"
   },
   "Custom Power Actions": {
-    "Custom Power Actions": ""
+    "Custom Power Actions": "カスタム電源アクション"
   },
   "Custom Transparency": {
     "Custom Transparency": "カスタム透明度"
@@ -492,7 +492,7 @@
     "Dock Transparency": "ドックの透明度"
   },
   "Domain (optional)": {
-    "Domain (optional)": ""
+    "Domain (optional)": "ドメイン (オプション)"
   },
   "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": {
     "Drag widgets to reorder within sections. Use the eye icon to hide/show widgets (maintains spacing), or X to remove them completely.": "ウィジェットをドラッグしてセクション内で順序を変更できます。目のアイコンでウィジェットを表示/非表示に（スペースは維持）、Xで完全に削除できます。"
@@ -669,7 +669,7 @@
     "I Understand": "わかりました"
   },
   "Icon Size": {
-    "Icon Size": ""
+    "Icon Size": "アイコンサイズ"
   },
   "Icon Theme": {
     "Icon Theme": "アイコンテーマ"
@@ -690,7 +690,7 @@
     "Include Transitions": "トランジションを含める"
   },
   "Individual Batteries": {
-    "Individual Batteries": ""
+    "Individual Batteries": "バッテリーごと"
   },
   "Input Devices": {
     "Input Devices": "入力デバイス"
@@ -735,7 +735,7 @@
     "Launcher Button Logo": "ランチャーのボタンロゴ"
   },
   "Left": {
-    "Left": ""
+    "Left": "左"
   },
   "Light Mode": {
     "Light Mode": "ライトモード"
@@ -1167,7 +1167,7 @@
     "Select system font family": "システムフォントファミリーを選ぶ"
   },
   "Select system sound theme": {
-    "Select system sound theme": ""
+    "Select system sound theme": "システムサウンドテーマを選ぶ"
   },
   "Select which transitions to include in randomization": {
     "Select which transitions to include in randomization": "含めたいトランジションをランダム化に選択"
@@ -1221,7 +1221,7 @@
     "Show power, restart, and logout buttons on the lock screen": "ロック画面に電源ボタン、再起動ボタン、ログアウトボタンを表示"
   },
   "Show seconds": {
-    "Show seconds": ""
+    "Show seconds": "秒数を表示"
   },
   "Show weather information in top bar and control center": {
     "Show weather information in top bar and control center": "トップバーとコントロールセンターに天気情報を表示"
@@ -1245,7 +1245,7 @@
     "Sort Alphabetically": "アルファベット順に並べ替える"
   },
   "Sound Theme": {
-    "Sound Theme": ""
+    "Sound Theme": "サウンドテーマ"
   },
   "Spacer": {
     "Spacer": "間隔"
@@ -1284,10 +1284,10 @@
     "Switch User": "ユーザーを切り替える"
   },
   "Sync Mode with Portal": {
-    "Sync Mode with Portal": ""
+    "Sync Mode with Portal": "ポータルとの同期モード"
   },
   "Sync dark mode with settings portals for system-wide theme hints": {
-    "Sync dark mode with settings portals for system-wide theme hints": ""
+    "Sync dark mode with settings portals for system-wide theme hints": "ダークモードをシステム全体のテーマヒントの設定ポータルと同期"
   },
   "System": {
     "System": "システム"
@@ -1365,7 +1365,7 @@
     "Time & Weather": "時間および天気"
   },
   "To Full": {
-    "To Full": ""
+    "To Full": "フルへ"
   },
   "To update, run the following command:": {
     "To update, run the following command:": "更新するには以下のコマンドを実行してください："
@@ -1422,7 +1422,7 @@
     "Use Monospace Font": "等幅フォントを使用"
   },
   "Use System Theme": {
-    "Use System Theme": ""
+    "Use System Theme": "システムテーマを使用"
   },
   "Use custom command for update your system": {
     "Use custom command for update your system": "カスタムコマンドを使用してシステムを更新"
@@ -1434,7 +1434,7 @@
     "Use light theme instead of dark theme": "ダークテーマではなく、ライトテーマを使用"
   },
   "Use sound theme from system settings": {
-    "Use sound theme from system settings": ""
+    "Use sound theme from system settings": "システム設定からサウンドテーマを使用"
   },
   "Use%": {
     "Use%": "使用％"
@@ -1503,7 +1503,7 @@
     "Wind": "風"
   },
   "Window Scrolling": {
-    "Window Scrolling": ""
+    "Window Scrolling": "ウィンドウスクロール"
   },
   "Workspace": {
     "Workspace": "ワークスペース"

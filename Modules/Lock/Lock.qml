@@ -82,12 +82,16 @@ Scope {
         locked: shouldLock
 
         WlSessionLockSurface {
+            id: lockSurface
+
             color: "transparent"
 
             LockSurface {
                 anchors.fill: parent
                 lock: sessionLock
                 sharedPasswordBuffer: root.sharedPasswordBuffer
+                screenName: lockSurface.screen?.name ?? ""
+                isLocked: shouldLock
                 onUnlockRequested: {
                     root.unlock()
                 }
