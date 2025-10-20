@@ -19,24 +19,35 @@ Item {
     property int currentPage: 0
     property int itemsPerPage: 16
     property int totalPages: Math.max(1, Math.ceil(wallpaperList.length / itemsPerPage))
+    property bool active: false
+    property Item focusTarget: wallpaperGrid
+    property Item tabBarItem: null
 
     onVisibleChanged: {
-        if (visible) {
-            Qt.callLater(() => {
-                setInitialSelection()
-                wallpaperGrid.forceActiveFocus()
-            })
+        if (visible && active) {
+            Qt.callLater(() => setInitialSelection())
         }
     }
 
     Component.onCompleted: {
         loadWallpapers()
-        if (visible) {
-            Qt.callLater(() => {
-                setInitialSelection()
-                wallpaperGrid.forceActiveFocus()
-            })
+        if (visible && active) {
+            Qt.callLater(() => setInitialSelection())
         }
+    }
+
+    onActiveChanged: {
+        if (active && visible) {
+            Qt.callLater(() => setInitialSelection())
+        } else {
+            wallpaperGrid.focus = false
+        }
+    }
+
+    function requestFocus() {
+        if (!root.active || !root.visible) return
+        wallpaperGrid.focus = true
+        Qt.callLater(() => wallpaperGrid.forceActiveFocus())
     }
 
     function setInitialSelection() {
@@ -55,10 +66,8 @@ Item {
     }
 
     onWallpaperListChanged: {
-        if (visible) {
-            Qt.callLater(() => {
-                setInitialSelection()
-            })
+        if (visible && active) {
+            Qt.callLater(() => setInitialSelection())
         }
     }
 
@@ -91,9 +100,19 @@ Item {
                 if (text && text.trim()) {
                     const files = text.trim().split('\n').filter(file => file.length > 0)
                     wallpaperList = files
-                    currentPage = 0
+
+                    const currentPath = SessionData.wallpaperPath
+                    const selectedIndex = currentPath ? wallpaperList.indexOf(currentPath) : -1
+
+                    if (selectedIndex >= 0) {
+                        currentPage = Math.floor(selectedIndex / itemsPerPage)
+                    } else {
+                        const maxPage = Math.max(0, Math.ceil(files.length / itemsPerPage) - 1)
+                        currentPage = Math.min(Math.max(0, currentPage), maxPage)
+                    }
                 } else {
                     wallpaperList = []
+                    currentPage = 0
                 }
             }
         }
@@ -115,13 +134,16 @@ Item {
                 cellWidth: width / 4
                 cellHeight: height / 4
                 clip: true
-                interactive: true
+                enabled: root.active
+                interactive: root.active
                 boundsBehavior: Flickable.StopAtBounds
-                focus: true
-                keyNavigationEnabled: true
+                focus: root.active
+                keyNavigationEnabled: root.active
                 keyNavigationWraps: true
                 highlightFollowsCurrentItem: true
                 currentIndex: 0
+                KeyNavigation.backtab: root.tabBarItem
+                KeyNavigation.up: root.tabBarItem
 
                 highlight: Rectangle {
                     color: "transparent"
@@ -153,21 +175,9 @@ Item {
                 }
 
                 Keys.onPressed: (event) => {
-                    if (event.key === Qt.Key_Tab) {
-                        if (currentIndex < 0) {
-                            currentIndex = 0
-                        } else {
-                            currentIndex = (currentIndex + 1) % wallpaperGrid.count
-                        }
-                        event.accepted = true
-                    } else if (event.key === Qt.Key_Backtab) {
-                        if (currentIndex < 0) {
-                            currentIndex = 0
-                        } else {
-                            currentIndex = currentIndex > 0 ? currentIndex - 1 : wallpaperGrid.count - 1
-                        }
-                        event.accepted = true
-                    } else if (event.key === Qt.Key_PageUp) {
+                    const columns = 4
+
+                    if (event.key === Qt.Key_PageUp) {
                         if (currentPage > 0) {
                             currentPage--
                             wallpaperGrid.currentIndex = 0
@@ -186,6 +196,14 @@ Item {
                     } else if (event.key === Qt.Key_End && event.modifiers & Qt.ControlModifier) {
                         currentPage = totalPages - 1
                         wallpaperGrid.currentIndex = 0
+                        event.accepted = true
+                    } else if (event.key === Qt.Key_Up && root.tabBarItem && (currentIndex < columns || currentIndex === -1)) {
+                        wallpaperGrid.focus = false
+                        root.tabBarItem.forceActiveFocus()
+                        event.accepted = true
+                    } else if (event.key === Qt.Key_Tab && (event.modifiers & Qt.ShiftModifier) && root.tabBarItem) {
+                        wallpaperGrid.focus = false
+                        root.tabBarItem.forceActiveFocus()
                         event.accepted = true
                     }
                 }
@@ -268,6 +286,7 @@ Item {
 
                             onClicked: {
                                 wallpaperGrid.currentIndex = index
+                                root.requestFocus()
                                 if (modelData) {
                                     SessionData.setWallpaper(modelData)
                                 }

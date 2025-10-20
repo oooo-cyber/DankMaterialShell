@@ -2,7 +2,7 @@ import QtQuick
 import qs.Common
 import qs.Widgets
 
-Item {
+FocusScope {
     id: tabBar
 
     property alias model: tabRepeater.model
@@ -11,11 +11,99 @@ Item {
     property int tabHeight: 56
     property bool showIcons: true
     property bool equalWidthTabs: true
+    property Item nextFocusTarget: null
+    property Item previousFocusTarget: null
 
     signal tabClicked(int index)
     signal actionTriggered(int index)
 
+    focus: false
+    activeFocusOnTab: true
     height: tabHeight
+
+    KeyNavigation.tab: nextFocusTarget
+    KeyNavigation.down: nextFocusTarget
+    KeyNavigation.backtab: previousFocusTarget
+    KeyNavigation.up: previousFocusTarget
+
+    Keys.onPressed: (event) => {
+        if (!tabBar.activeFocus || tabRepeater.count === 0)
+            return
+
+        function findSelectableIndex(startIndex, step) {
+            let idx = startIndex
+            for (let i = 0; i < tabRepeater.count; i++) {
+                idx = (idx + step + tabRepeater.count) % tabRepeater.count
+                const item = tabRepeater.itemAt(idx)
+                if (item && !item.isAction)
+                    return idx
+            }
+            return -1
+        }
+
+        const goToIndex = (nextIndex) => {
+            if (nextIndex >= 0 && nextIndex !== tabBar.currentIndex) {
+                tabBar.currentIndex = nextIndex
+                tabBar.tabClicked(nextIndex)
+            }
+        }
+
+        const resolveTarget = (item) => {
+            if (!item)
+                return null
+
+            if (item.focusTarget)
+                return resolveTarget(item.focusTarget)
+
+            return item
+        }
+
+        const focusItem = (item) => {
+            const target = resolveTarget(item)
+            if (!target)
+                return false
+
+            if (target.requestFocus) {
+                Qt.callLater(() => target.requestFocus())
+                return true
+            }
+
+            if (target.forceActiveFocus) {
+                Qt.callLater(() => target.forceActiveFocus())
+                return true
+            }
+
+            return false
+        }
+
+        if (event.key === Qt.Key_Right) {
+            const baseIndex = (tabBar.currentIndex >= 0 && tabBar.currentIndex < tabRepeater.count) ? tabBar.currentIndex : -1
+            const nextIndex = findSelectableIndex(baseIndex, 1)
+            if (nextIndex >= 0) {
+                goToIndex(nextIndex)
+                event.accepted = true
+            }
+        } else if (event.key === Qt.Key_Left) {
+            const baseIndex = (tabBar.currentIndex >= 0 && tabBar.currentIndex < tabRepeater.count) ? tabBar.currentIndex : 0
+            const nextIndex = findSelectableIndex(baseIndex, -1)
+            if (nextIndex >= 0) {
+                goToIndex(nextIndex)
+                event.accepted = true
+            }
+        } else if (event.key === Qt.Key_Tab && (event.modifiers & Qt.ShiftModifier)) {
+            if (focusItem(tabBar.previousFocusTarget)) {
+                event.accepted = true
+            }
+        } else if (event.key === Qt.Key_Tab || event.key === Qt.Key_Down) {
+            if (focusItem(tabBar.nextFocusTarget)) {
+                event.accepted = true
+            }
+        } else if (event.key === Qt.Key_Up) {
+            if (focusItem(tabBar.previousFocusTarget)) {
+                event.accepted = true
+            }
+        }
+    }
 
     Row {
         id: tabRow
