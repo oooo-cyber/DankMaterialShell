@@ -250,11 +250,11 @@ Singleton {
             "monitorWallpapersDark", "doNotDisturb", "nightModeEnabled",
             "nightModeTemperature", "nightModeAutoEnabled", "nightModeAutoMode",
             "nightModeStartHour", "nightModeStartMinute", "nightModeEndHour",
-            "nightModeEndMinute", "latitude", "longitude", "nightModeLocationProvider",
+            "nightModeEndMinute", "latitude", "longitude", "nightModeUseIPLocation", "nightModeLocationProvider",
             "pinnedApps", "selectedGpuIndex", "nvidiaGpuTempEnabled",
             "nonNvidiaGpuTempEnabled", "enabledGpuPciIds", "wallpaperCyclingEnabled",
             "wallpaperCyclingMode", "wallpaperCyclingInterval", "wallpaperCyclingTime",
-            "monitorCyclingSettings", "lastBrightnessDevice", "wallpaperTransition",
+            "monitorCyclingSettings", "lastBrightnessDevice", "launchPrefix", "wallpaperTransition",
             "includedTransitions", "recentColors", "showThirdPartyPlugins", "configVersion"
         ]
 

@@ -409,9 +409,9 @@ Item {
                                             height: 40
                                             text: SessionData.latitude.toString()
                                             placeholderText: "0.0"
-                                            onTextChanged: {
-                                                const lat = parseFloat(text) || 0.0
-                                                if (lat >= -90 && lat <= 90) {
+                                            onEditingFinished: {
+                                                const lat = parseFloat(text)
+                                                if (!isNaN(lat) && lat >= -90 && lat <= 90 && lat !== SessionData.latitude) {
                                                     SessionData.setLatitude(lat)
                                                 }
                                             }
@@ -432,9 +432,9 @@ Item {
                                             height: 40
                                             text: SessionData.longitude.toString()
                                             placeholderText: "0.0"
-                                            onTextChanged: {
-                                                const lon = parseFloat(text) || 0.0
-                                                if (lon >= -180 && lon <= 180) {
+                                            onEditingFinished: {
+                                                const lon = parseFloat(text)
+                                                if (!isNaN(lon) && lon >= -180 && lon <= 180 && lon !== SessionData.longitude) {
                                                     SessionData.setLongitude(lon)
                                                 }
                                             }
